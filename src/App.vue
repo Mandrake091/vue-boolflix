@@ -2,8 +2,6 @@
   <div id="app">
     <app-header/>
     <app-grid/>
-   
-    
   </div>
     
 
@@ -19,7 +17,6 @@ export default {
   components: {
     AppHeader,
     AppGrid,
-
   }
 }
 </script>
