@@ -1,29 +1,34 @@
 <template>
-    <header class="d-flex justify-content-between align-items-center px-3">
-         <img class="h-50" src="../assets/images/Logonetflix.png" alt="">  
-         <div class="col-10 col-md-6 col-lg-4">
-            <div class="input-group">
-            <input type="text" class="form-control form-control-sm " placeholder="Search Movie" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="inputText">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="search">Search</button>
+    <header class="container-fluid ">
+        <div class="row align-items-center justify-content-between h-100">
+            <div class="col-5">
+                 <img class="" src="../assets/images/Logonetflix.png" alt="">  
+            </div>
+           <div class="col-5 col-md-3">
+                <div class="input-group input-group-sm d-flex justify-content-end ">
+  <input type="text" class="form-control" placeholder="Cerca per titolo" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="search" @keyup.enter="$emit('performSearch',search)">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="find">Cerca</button>
         </div>
+        </div> 
+</div>
 
-        </div>
     </header>
 </template>
 <script>
 
-import store from '../store.js';
+
 export default {
     components: {  },
     name: "AppHeader",
     data(){
         return{
-            inputText:""
+            search:""
         } 
     },
      methods:{      
-        search(){
-            store.setSearch(this.inputText)
+            find(){
+            this.$emit('performSearch', this.search)
+            this.search = ''
         }
     },
     computed:{
@@ -36,7 +41,7 @@ export default {
 @import "../style/generals.scss";
 
 img{
-    height: 100%
+    height: 40px; 
 }
 
 header{
