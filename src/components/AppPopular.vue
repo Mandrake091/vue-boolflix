@@ -1,25 +1,19 @@
 <template>
 <section> 
     <app-loader v-if="loading"/>
-    
     <carousel paginationPosition="bottom-overlay" :speed="1500" :centerMode="true" :autoplay="true" :autoplayTimeout="5000" :per-page="4" class="m-auto">
         <slide class="text-center" v-for="item in popular" :key="item.id">
-        <div class="card m-auto" style="width: 10rem;">
-  <img class="h-25" :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
+        <div class="card m-auto" style="width: 8rem;">
+  <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
     <div class="card-body d-flex flex-column justify-content-between">
     <p class="card-text">{{item.title}}</p>
-       <p class="card-text">{{item.vote_average}}</p>
-
+       <p class="card-text p-0 d-flex align-items-center m-auto">Voto: {{item.vote_average}}
+           <country-flag :country='item.original_language === "en" ? item.original_language = "it" : item.original_language' size='small'/>
+       </p>
   </div>
-</div>
-             
-          {{item.title ? item.title : item.name}}
-           {{item.original_language}}
-           {{item.original_title ? item.original_title : item.original_name}}
-           {{item.vote_average}}
-       
-        </slide>
-    </carousel>
+</div>         
+</slide>
+</carousel>
      
         
 </section>
@@ -28,14 +22,14 @@
 <script>
 import store from '../store.js';
 import axios from 'axios';
+import CountryFlag from 'vue-country-flag'
 import { Carousel, Slide } from 'vue-carousel';
-
 import AppLoader from './AppLoader.vue';
 
 export default {
     name: "AppPopular",
     props:['popular'],
-    components: { AppLoader, Carousel, Slide },
+    components: { AppLoader, Carousel, Slide, CountryFlag },
     data(){
         return {
             lastPopular:[],
@@ -88,14 +82,15 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 h1{
     color: antiquewhite;
 }
 .card{
-    min-height: 400px;
+    min-height: 300px;
+    font-size: 0.7em;
     }
-
-
-
+   img{
+       height: 70%;
+    }
 </style>
