@@ -1,37 +1,44 @@
 <template>
 <section> 
     <app-loader v-if="loading"/>
+    <div class="container p-0">
+         <h1 class="p-0">Serie</h1>
+       <div class="row flex-nowrap justify-content-around">
+           <div class="col-6 d-flex flex-wrap justify-content-around">
+             <div v-for="item in series" :key="item.id" class="card text-center" style="width: 8rem;">
+  <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" class="card-img-top h-50" alt="...">
+  <div class="card-body ">
+    <h6 class="card-title">{{item.name}}</h6>
+  </div>
+  <ul class="list-group list-group-flush  border-0">
+    <li class="list-group-item m-3 p-0">
+        <country-flag :country='item.original_language === "en" ? item.original_language = "it" : item.original_language' size='small'/></li>
+    <li class="list-group-item">Voto: {{item.vote_average}}</li>
+  </ul>
 
-     <ul>
-         <li class="text-white" v-for="item in series" :key="item.id">
+<!-- 
              <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
            {{item.title ? item.title : item.name}}
            {{item.original_language}}
            {{item.original_title ? item.original_title : item.original_name}}
- 
-           {{item.vote_average}}
-         </li>
-       </ul>
-       <ul>
-        
-         <li class="text-white" v-for="item in movies" :key="item.id">
-             <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
-           {{item.title ? item.title : item.name}}
-           {{item.original_language}}
-           {{item.original_title ? item.original_title : item.original_name}}
-           {{item.vote_average}}
-         </li>
-       </ul>
-       <ul>
-        
-         <li class="text-white" v-for="item in popular" :key="item.id">
+           {{item.vote_average}} -->
+         </div>
+       
+           </div>
+
+
+           <div class="col-6">
+<h1>film</h1>
+         <div class="text-white" v-for="item in movies" :key="item.id">
              <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
            {{item.title ? item.title : item.name}}
            {{item.original_language}}
            {{item.original_title ? item.original_title : item.original_name}}
            {{item.vote_average}}
-         </li>
-       </ul>
+         </div>
+        </div>
+    </div>  
+    </div>
 </section>
 </template>
 
@@ -40,11 +47,12 @@ import store from '../store.js';
 import axios from 'axios';
 
 import AppLoader from './AppLoader.vue';
+import CountryFlag from 'vue-country-flag'
 
 export default {
     name: "AppGrid",
     props:['series','movies','popular'],
-    components: { AppLoader },
+    components: { AppLoader , CountryFlag },
     data(){
         return {
             lastPopular:[],
@@ -97,14 +105,24 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 h1{
     color: antiquewhite;
 }
-
-.row{
-    column-gap: 20px;
+.col-6{
     row-gap: 20px;
+    column-gap: 20px;
 }
+.card{
+    filter: drop-shadow(0 3px 5px rgb(0, 0, 0));
+    color: antiquewhite;
+}
+.card-body{
+    filter: drop-shadow(0 3px 5px black);
+     box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.393);
+    background: #68050a;   
+    border-radius: 0 0 30px 30px; 
+}
+   
 
 </style>

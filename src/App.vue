@@ -4,14 +4,12 @@
       <app-header @performSearch="search"/>
     </header>
     <main>
-        <h1>Popular</h1>
         <app-popular :popular="popular" title="popular"/>
-        <h1>Film</h1>
-       <app-grid :movies="movies" title="Movies"/> 
-        <h1>Serie</h1>
-      <app-grid :series="series" title="Series"/> 
-       
-     
+   
+       <app-grid :movies="movies" 
+       :series="series" title="Movies"/> 
+   
+      <!-- <app-grid :series="series" title="Series"/>  -->
     </main>
   </div>
 </template>
@@ -62,7 +60,8 @@ export default {
     search(text){
        const queryParams = {params:{
         api_key: this.apiKey,
-        query:text
+        query:text,
+        language:'it-IT'
       }}
       console.log(text)
       this.getMovies(queryParams)

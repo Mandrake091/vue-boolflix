@@ -1,13 +1,18 @@
 <template>
 <section> 
+    <div class="container">
+        <div class="row">
+          <h1 class="p-0">Popular</h1>   
+        </div>
+    </div>
+   
     <app-loader v-if="loading"/>
-    <carousel paginationPosition="bottom-overlay" :speed="1500" :centerMode="true" :autoplay="true" :autoplayTimeout="5000" :per-page="4" class="m-auto">
+    <carousel paginationPosition="bottom-overlay" :speed="1500" :centerMode="true" :autoplay="true" :autoplayTimeout="5000" :per-page="5" class="m-auto">
         <slide class="text-center" v-for="item in popular" :key="item.id">
         <div class="card m-auto" style="width: 8rem;">
   <img :src="'https://image.tmdb.org/t/p/w500/'+ item.poster_path" alt="">
     <div class="card-body d-flex flex-column justify-content-between">
-    <p class="card-text">{{item.title}}</p>
-       <p class="card-text p-0 d-flex align-items-center m-auto">Voto: {{item.vote_average}}
+       <p class="card-text d-flex align-items-center justify-content-center">Voto: {{item.vote_average}}
            <country-flag :country='item.original_language === "en" ? item.original_language = "it" : item.original_language' size='small'/>
        </p>
   </div>
@@ -87,10 +92,10 @@ h1{
     color: antiquewhite;
 }
 .card{
-    min-height: 300px;
-    font-size: 0.7em;
+    min-height: 200pxpx;
+    font-size: 0.8em;
     }
    img{
-       height: 70%;
+       height: 150px
     }
 </style>
