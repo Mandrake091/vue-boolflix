@@ -1,5 +1,5 @@
 <template>
-  <div class="col-5 d-flex flex-wrap justify-content-center pb-5 mb-5">
+  <div class="col-5 d-flex flex-wrap justify-content-center">
     <h3 class="w-100 text-center m-3">Series</h3>
     <div
       v-for="item in series"
@@ -9,11 +9,12 @@
     >
       <app-loader v-if="loading" />
 
-      <img
+      <img v-if ="item.poster_path !== null" 
         :src="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
         class="card-img-top h-50"
         alt=""
       />
+      <img class="not-image" v-else src="../assets/images/notfound.jpg" alt="">
       <div class="card-body">
         <h6 class="card-title">{{ item.name }}</h6>
       </div>
@@ -113,10 +114,16 @@ h3 {
   color: rgb(69, 69, 69);
   text-shadow: (1px 1px 5px rgba(0, 0, 0, 0.534));
 }
+.not-image{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 .col-5 {
   border-radius: 20px;
-  box-shadow: 0px 0px 20px rgba(179, 10, 10, 0.568),
-    inset 0px 0px 20px rgba(179, 10, 10, 0.568);
+  box-shadow: 0px 0px 20px #E50914,
+    inset 0px 0px 20px #E50914;
   row-gap: 20px;
   column-gap: 20px;
 }
@@ -126,15 +133,22 @@ h3 {
   position: relative;
   z-index: 0;
   cursor: pointer;
-  height: 350px;
+  height: 300px;
   max-height: 500px;
   filter: drop-shadow(0 3px 5px rgb(0, 0, 0));
-  color: antiquewhite;
-  &:hover .card_description {
-    display: block;
+  color: white;
+  &:hover .card_description { 
+    opacity: 0.8;
   }
 }
+
 .card_description {
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
   text-align: left;
   position: absolute;
   top: 0;
@@ -147,12 +161,12 @@ h3 {
   padding: 0.7rem;
   text-overflow: ellipsis;
   overflow: hidden;
-
   -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
-  display: none;
+
 }
 .card-body {
+  margin: auto;
   filter: drop-shadow(0 3px 5px black);
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.393);
   background: #330003b9;

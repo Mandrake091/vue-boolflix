@@ -4,7 +4,7 @@
       <div class="col-4">
         <img class="" src="../assets/images/Logonetflix.png" alt="" />
       </div>
-      <div class="col-8 col-md-3">
+      <div class="col-8 col-md-4">
         <div class="input-group input-group-sm d-flex justify-content-end">
           <input
             type="text"

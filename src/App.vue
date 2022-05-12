@@ -7,8 +7,8 @@
       <app-popular :popular="popular" title="popular" />
       <div class="container">
         <div class="row justify-content-around align-items-start pt-5 m-auto">
-          <app-series :series="series" title="Series" />
           <app-movies :movies="movies" title="Movie" />
+          <app-series :series="series" title="Series" />
         </div>
       </div>
     </main>
