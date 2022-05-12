@@ -2,17 +2,18 @@
   <section>
     <div class="container">
       <div class="row">
-        <h1 class="">Popular</h1>
+        <h3 class="">Popular</h3>
       </div>
     </div>
 
     <app-loader v-if="loading" />
     <carousel
+      paginationColor="#E50914"
       paginationPosition="bottom-overlay"
       :speed="1500"
       :autoplay="true"
       :autoplayTimeout="5000"
-      :per-page="3"
+      :per-page="5"
       class=""
     >
       <slide class="text-center" v-for="item in popular" :key="item.id">
@@ -112,11 +113,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  color: antiquewhite;
+h3 {
+  color: rgb(69, 69, 69);
+  text-shadow: (1px 1px 5px rgba(0, 0, 0, 0.534));
 }
 .card {
-  min-height: 200pxpx;
+  min-height: 200px;
   font-size: 0.8em;
 }
 img {

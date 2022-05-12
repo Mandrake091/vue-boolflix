@@ -1,89 +1,112 @@
 <template>
   <div id="app">
     <header>
-      <app-header @performSearch="search"/>
+      <app-header @performSearch="search" />
     </header>
     <main>
-        <app-popular :popular="popular" title="popular"/>
-   
-       <app-grid :movies="movies" 
-       :series="series" title="Movies"/> 
-   
-      <!-- <app-grid :series="series" title="Series"/>  -->
+      <app-popular :popular="popular" title="popular" />
+      <div class="container">
+        <div class="row justify-content-around align-items-start pt-5 m-auto">
+          <app-series :series="series" title="Series" />
+          <app-movies :movies="movies" title="Movie" />
+        </div>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
-import AppGrid from './components/AppGrid.vue'
-import AppHeader from './components/AppHeader.vue'
-import axios from 'axios';
-import AppPopular from './components/AppPopular.vue';
+import axios from "axios";
+import AppMovies from "./components/AppMovies.vue";
+import AppSeries from "./components/AppSeries.vue";
+import AppHeader from "./components/AppHeader.vue";
+import AppPopular from "./components/AppPopular.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     AppHeader,
-    AppGrid,
+    AppSeries,
+    AppMovies,
     AppPopular,
-  }, 
-  data(){
+  },
+  data() {
     return {
-      apiKey:'6853d87823c5e52e6b967b2482fca241',
-      apiPath:'https://api.themoviedb.org/3/',
-      apiTypeMovie:'movie/',
-      apiTypeTv:'tv',
-      apiTypePopular:'popular',
-      apiSearch:'search/',
-      apiLanguageIt:'&language=it-IT',
-      movies:[],
-      series:[],
-      popular:[],
-    }
+      apiKey: "6853d87823c5e52e6b967b2482fca241",
+      apiPath: "https://api.themoviedb.org/3/",
+      apiTypeMovie: "movie/",
+      apiTypeTv: "tv",
+      apiTypePopular: "popular",
+      apiSearch: "search/",
+      apiLanguageIt: "&language=it-IT",
+      movies: [],
+      series: [],
+      popular: [],
+    };
   },
-  methods:{
-    getSeries(queryParams){
-      axios.get(this.apiPath + this.apiSearch + 'tv', queryParams).then((res)=>{
-        console.log(res.data.results)
-        this.series = res.data.results
-      }).catch((error)=>{
-        console.log(error)
-      })
+  methods: {
+    getSeries(queryParams) {
+      axios
+        .get(this.apiPath + this.apiSearch + "tv", queryParams)
+        .then((res) => {
+          console.log(res.data.results);
+          this.series = res.data.results;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    getMovies(queryParams){
-      axios.get(this.apiPath + this.apiSearch + 'movie', queryParams).then((res)=>{
-        console.log(res.data.results)
-        this.movies = res.data.results
-      }).catch((error)=>{
-        console.log(error)
-      })
+    getMovies(queryParams) {
+      axios
+        .get(this.apiPath + this.apiSearch + "movie", queryParams)
+        .then((res) => {
+          console.log(res.data.results);
+          this.movies = res.data.results;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    search(text){
-       const queryParams = {params:{
-        api_key: this.apiKey,
-        query:text,
-        language:'it-IT'
-      }}
-      console.log(text)
-      this.getMovies(queryParams)
-      this.getSeries(queryParams)
-    }
+    search(text) {
+      const queryParams = {
+        params: {
+          api_key: this.apiKey,
+          query: text,
+          language: "it-IT",
+        },
+      };
+      console.log(text);
+      this.getMovies(queryParams);
+      this.getSeries(queryParams);
+    },
   },
-   mounted(){
-      axios.get(this.apiPath + this.apiTypeMovie + this.apiTypePopular + '?api_key=' + this.apiKey + this.apiLanguageIt).then((res)=>{
-        console.log(this.popular)
-        this.popular = res.data.results
-      }).catch((error)=>{
-        console.log(error)
+  mounted() {
+    axios
+      .get(
+        this.apiPath +
+          this.apiTypeMovie +
+          this.apiTypePopular +
+          "?api_key=" +
+          this.apiKey +
+          this.apiLanguageIt
+      )
+      .then((res) => {
+        console.log(this.popular);
+        this.popular = res.data.results;
       })
+      .catch((error) => {
+        console.log(error);
+      });
   },
-
-}
+};
 </script>
 
 <style lang="scss">
 @import "./style/generals.scss";
 
-#app{
+#app {
   background-color: $bg-main;
+}
+main {
+  height: calc(100vh - 80px);
 }
 </style>
