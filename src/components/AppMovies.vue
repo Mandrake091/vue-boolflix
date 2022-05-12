@@ -166,6 +166,7 @@ h3 {
 
 }
 .card-body {
+ 
   filter: drop-shadow(0 3px 5px black);
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.393);
   background: #330003b9;
