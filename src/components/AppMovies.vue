@@ -80,31 +80,13 @@ export default {
         this.loading = false;
       }, 1000);
     },
-    myfind() {
-      console.log(store.state.search);
-      return store.state.searchText;
-    },
+    
     voteNumber(number) {
       return Math.round(number / 2);
     },
   },
-  computed: {},
-  created() {
-    this.loading = true;
-    setTimeout(() => {
-      (this.loading = false),
-        axios
-          .get(this.apiLastPopular)
-          .then((res) => {
-            this.lastPopular = res.data.results;
-            console.log(this.albumList);
-            console.log(this.genre);
-            console.log(this.authors);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-    }, 2000);
+  computed: {
+    
   },
 };
 </script>

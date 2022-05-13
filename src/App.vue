@@ -7,7 +7,8 @@
       <app-popular :popular="popular" title="popular" />
       <div class="container">
         <div class="row justify-content-around align-items-start pt-5 m-auto">
-          <app-movies :movies="movies" title="Movie" />
+          <app-select :genre="genre" @myGenre="genreId" />
+          <app-movies :movies="filteredList" title="Movie" />
           <app-series :series="series" title="Series" />
         </div>
       </div>
@@ -21,6 +22,7 @@ import AppMovies from "./components/AppMovies.vue";
 import AppSeries from "./components/AppSeries.vue";
 import AppHeader from "./components/AppHeader.vue";
 import AppPopular from "./components/AppPopular.vue";
+import AppSelect from "./components/AppSelect.vue";
 export default {
   name: "App",
   components: {
@@ -28,6 +30,7 @@ export default {
     AppSeries,
     AppMovies,
     AppPopular,
+    AppSelect,
   },
   data() {
     return {
@@ -41,7 +44,20 @@ export default {
       movies: [],
       series: [],
       popular: [],
+      genre: [],
+      genereId: "",
     };
+  },
+  computed: {
+    filteredList() {
+      console.log(this.movies);
+      if (this.genereId === "") return this.movies;
+      else {
+        return this.movies.filter((el) =>
+          el.genre_ids.includes(this.genereId)
+        );
+      }
+    },
   },
   methods: {
     getSeries(queryParams) {
@@ -74,9 +90,12 @@ export default {
           language: "it-IT",
         },
       };
-      console.log(text);
       this.getMovies(queryParams);
       this.getSeries(queryParams);
+    },
+    genreId(txt) {
+      this.genereId = txt;
+      console.log(txt);
     },
   },
   mounted() {
@@ -95,7 +114,23 @@ export default {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }),
+      axios
+        .get(
+          this.apiPath +
+            "genre/" +
+            this.apiTypeMovie +
+            "list?api_key=" +
+            this.apiKey +
+            this.apiLanguageIt
+        )
+        .then((res) => {
+          this.genre = res.data.genres;
+          console.log(this.genre);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   },
 };
 </script>
