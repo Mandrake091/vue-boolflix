@@ -1,6 +1,6 @@
 <template>
-  <div class="col-5 d-flex flex-wrap justify-content-center">
-    <h3 class="w-100 text-center m-3">Series</h3>
+  <div class="col-5 d-flex flex-wrap justify-content-center mb-5 pb-4">
+    <h3 class="w-100 text-center m-2 mt-4">Series</h3>
     <div
       v-for="item in series"
       :key="item.id"

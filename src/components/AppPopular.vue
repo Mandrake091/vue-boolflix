@@ -1,15 +1,16 @@
 <template>
   <section>
+    <app-loader v-if="loading" />
     <div class="container">
       <div class="row">
         <h3 class="">Popular</h3>
       </div>
     </div>
 
-    <app-loader v-if="loading" />
+    
     <carousel
       paginationColor="#E50914"
-      paginationPosition="bottom"
+      paginationPosition="bottom-overlay"
       :speed="2000"
       :autoplay="true"
       :autoplayTimeout="5000"

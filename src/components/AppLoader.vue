@@ -1,30 +1,30 @@
 <template>
-<div class="loader">
-	<div class="mosaic-loader">
-    <div class="cell d-0"></div>
-    <div class="cell d-1"></div>
-    <div class="cell d-2"></div>
-    <div class="cell d-3"></div>
-    <div class="cell d-1"></div>
-    <div class="cell d-2"></div>
-    <div class="cell d-3"></div>
-    <div class="cell d-4"></div>
-    <div class="cell d-2"></div>
-    <div class="cell d-3"></div>
-    <div class="cell d-4"></div>
-    <div class="cell d-5"></div>
-    <div class="cell d-3"></div>
-    <div class="cell d-4"></div>
-    <div class="cell d-5"></div>
-    <div class="cell d-6"></div>
+  <div class="loader">
+    <div class="mosaic-loader">
+      <div class="cell d-0"></div>
+      <div class="cell d-1"></div>
+      <div class="cell d-2"></div>
+      <div class="cell d-3"></div>
+      <div class="cell d-1"></div>
+      <div class="cell d-2"></div>
+      <div class="cell d-3"></div>
+      <div class="cell d-4"></div>
+      <div class="cell d-2"></div>
+      <div class="cell d-3"></div>
+      <div class="cell d-4"></div>
+      <div class="cell d-5"></div>
+      <div class="cell d-3"></div>
+      <div class="cell d-4"></div>
+      <div class="cell d-5"></div>
+      <div class="cell d-6"></div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'AppLoader'
-}
+  name: "AppLoader",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -69,16 +69,16 @@ $colors: (
   $--y-1,
   $--y-2,
   $--y-3,
-  $--y-4,
+  $--y-4
 );
 
-.loader{
+.loader {
   background: rgba(0, 0, 0, 0.545);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  z-index: 1;
 }
 
 .mosaic-loader {
@@ -86,13 +86,15 @@ $colors: (
   --cell-spacing: 1px;
   --border-width: 1px;
   --cells: 4;
-  --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
-  
+  --total-size: calc(
+    var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing))
+  );
+
   display: flex;
   flex-wrap: wrap;
   width: var(--total-size);
   height: var(--total-size);
-  
+
   > .cell {
     --cell-color: white;
     flex: 0 0 var(--cell-size);
@@ -100,16 +102,16 @@ $colors: (
     background-color: transparent;
     box-sizing: border-box;
     border: var(--border-width) solid var(--cell-color);
-    
+
     animation: 1.5s ripple ease infinite;
-    
+
     $delays: (2 * 4) - 2;
     @for $i from 1 through $delays {
       &.d-#{$i} {
         animation-delay: $i * 100ms;
       }
     }
-    
+
     @for $i from 1 through length($colors) {
       &:nth-child(#{$i}) {
         --cell-color: #{nth($colors, $i)};
@@ -122,15 +124,15 @@ $colors: (
   0% {
     background-color: transparent;
   }
-  
+
   30% {
     background-color: var(--cell-color);
   }
-  
+
   60% {
     background-color: transparent;
   }
-  
+
   100% {
     background-color: transparent;
   }

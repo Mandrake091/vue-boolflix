@@ -55,7 +55,7 @@ img {
 }
 
 header {
-  height: 80px;
+  height: 50px;
   background-color: $bg-navbar;
 }
 </style>

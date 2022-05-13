@@ -1,6 +1,6 @@
 <template>
   <select
-    class="form-select w-75 m-5"
+    class="form-select w-25 my-5"
     aria-label="Default select example"
     v-model="inputFilter"
     @change="setGenre"
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       inputFilter: "",
-    }
+    };
   },
   props: ["genre"],
   methods: {
@@ -29,4 +29,7 @@ export default {
 };
 </script>
 <style>
+.form-select {
+  margin: 0 600px;
+}
 </style>

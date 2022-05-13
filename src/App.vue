@@ -6,10 +6,10 @@
     <main>
       <app-popular :popular="popular" title="popular" />
       <div class="container">
-        <div class="row justify-content-around align-items-start pt-5 m-auto">
+        <div class="row justify-content-around align-items-start pt-3 m-auto">
           <app-select :genre="genre" @myGenre="genreId" />
-          <app-movies :movies="filteredList" title="Movie" />
-          <app-series :series="series" title="Series" />
+          <app-movies :movies="filteredMovieList" title="Movie" />
+          <app-series :series="filteredSeriesList" title="Series" />
         </div>
       </div>
     </main>
@@ -49,13 +49,20 @@ export default {
     };
   },
   computed: {
-    filteredList() {
+    filteredMovieList() {
       console.log(this.movies);
-      if (this.genereId === "") return this.movies;
-      else {
-        return this.movies.filter((el) =>
-          el.genre_ids.includes(this.genereId)
-        );
+      if (this.genereId === "") {return this.movies
+      } else {
+        return this.movies.filter((el) => el.genre_ids.includes(this.genereId));
+       
+      }
+    },
+     filteredSeriesList() {
+      console.log(this.movies);
+      if (this.genereId === "") {return this.series
+      } else {
+        return this.series.filter((el) => el.genre_ids.includes(this.genereId));
+       
       }
     },
   },
