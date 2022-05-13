@@ -7,7 +7,6 @@
       </div>
     </div>
 
-    
     <carousel
       paginationColor="#E50914"
       paginationPosition="bottom-overlay"
@@ -23,7 +22,9 @@
             :src="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
             alt=""
           />
-          <div class="card-body d-flex flex-column justify-content-between pb-0">
+          <div
+            class="card-body d-flex flex-column justify-content-between pb-0"
+          >
             <p
               class="card-text d-flex align-items-center justify-content-center m-0"
             >
@@ -36,20 +37,20 @@
                 size="small"
               />
             </p>
-            
+
             <p class="text-warning m-0 m-2">
-          <i
-            v-for="index in voteNumber(item.vote_average)"
-            :key="index"
-            class="fa-solid fa-star"
-          ></i>
-        </p>
-      <div class="card_description">
-        <p>
-          <em><strong>Trama: </strong></em>
-          {{ item.overview }}
-        </p>
-      </div>
+              <i
+                v-for="index in voteNumber(item.vote_average)"
+                :key="index"
+                class="fa-solid fa-star"
+              ></i>
+            </p>
+            <div class="card_description">
+              <p>
+                <em><strong>Trama: </strong></em>
+                {{ item.overview }}
+              </p>
+            </div>
           </div>
         </div>
       </slide>
@@ -137,7 +138,7 @@ h3 {
 .card {
   min-height: 200px;
   font-size: 0.8em;
-   
+
   background: #56565693;
   filter: brightness(50%);
   position: relative;
@@ -145,17 +146,16 @@ h3 {
   cursor: pointer;
   filter: drop-shadow(0 3px 5px rgb(0, 0, 0));
   color: antiquewhite;
-  &:hover .card_description { 
+  &:hover .card_description {
     opacity: 0.8;
- 
   }
 }
 
-.VueCarousel-slide{
+.VueCarousel-slide {
   cursor: pointer;
   &:hover .card_description {
-   opacity: 0.8;
-}
+    opacity: 0.8;
+  }
 }
 .card_description {
   -webkit-transition: opacity 0.5s ease-in-out;
@@ -178,7 +178,6 @@ h3 {
   overflow: hidden;
   -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
-  
 }
 img {
   height: 150px;

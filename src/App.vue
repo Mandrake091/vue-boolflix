@@ -51,18 +51,18 @@ export default {
   computed: {
     filteredMovieList() {
       console.log(this.movies);
-      if (this.genereId === "") {return this.movies
+      if (this.genereId === "") {
+        return this.movies;
       } else {
         return this.movies.filter((el) => el.genre_ids.includes(this.genereId));
-       
       }
     },
-     filteredSeriesList() {
+    filteredSeriesList() {
       console.log(this.movies);
-      if (this.genereId === "") {return this.series
+      if (this.genereId === "") {
+        return this.series;
       } else {
         return this.series.filter((el) => el.genre_ids.includes(this.genereId));
-       
       }
     },
   },

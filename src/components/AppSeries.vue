@@ -8,13 +8,18 @@
       style="width: 9rem"
     >
       <app-loader v-if="loading" />
-
-      <img v-if ="item.poster_path !== null" 
+      <img
+        v-if="item.poster_path !== null"
         :src="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
         class="card-img-top h-50"
         alt=""
       />
-      <img class="not-image" v-else src="../assets/images/notfound.jpg" alt="">
+      <img
+        class="not-image"
+        v-else
+        src="../assets/images/notfound.jpg"
+        alt=""
+      />
       <div class="card-body">
         <h6 class="card-title">{{ item.name }}</h6>
       </div>
@@ -114,7 +119,7 @@ h3 {
   color: rgb(69, 69, 69);
   text-shadow: (1px 1px 5px rgba(0, 0, 0, 0.534));
 }
-.not-image{
+.not-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -122,8 +127,7 @@ h3 {
 }
 .col-5 {
   border-radius: 20px;
-  box-shadow: 0px 0px 20px #E50914,
-    inset 0px 0px 20px #E50914;
+  box-shadow: 0px 0px 20px #e50914, inset 0px 0px 20px #e50914;
   row-gap: 20px;
   column-gap: 20px;
 }
@@ -137,7 +141,7 @@ h3 {
   max-height: 500px;
   filter: drop-shadow(0 3px 5px rgb(0, 0, 0));
   color: white;
-  &:hover .card_description { 
+  &:hover .card_description {
     opacity: 0.8;
   }
 }
@@ -163,10 +167,8 @@ h3 {
   overflow: hidden;
   -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
-
 }
 .card-body {
-
   filter: drop-shadow(0 3px 5px black);
   box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.393);
   background: #330003b9;
